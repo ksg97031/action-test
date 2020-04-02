@@ -13,14 +13,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/cache@v1
-          path: **/
+      - name: Make temp file
+        run: |
+          echo "Before $(pwd)"
+          cd ~/; echo "After $(pwd)"
+          mkdir ~/tempfile
+          echo "test" >> ~/tempfile/test
+      - name: Cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/tempfile
           key: ${{ runner.os }}-tempfile-${{ hashFiles('**/tempfile') }}
           restore-keys: |
             ${{ runner.os }}-tempfile-
-      - name: Make temp file
-        run: |
-          echo "test" >> testfile
     
       
   test:
@@ -28,12 +33,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/cache@v1
-          path: **/
+      - name: Cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: tempfile
           key: ${{ runner.os }}-tempfile-${{ hashFiles('**/tempfile') }}
           restore-keys: |
             ${{ runner.os }}-tempfile-
 
       - name: Run SonarCloud analyse
         run: |
-          cat tempfile
+          echo "Current : $pwd";
+          ls -al ~/
+          cat ~/tempfile/test
