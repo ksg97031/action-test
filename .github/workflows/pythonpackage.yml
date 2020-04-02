@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache@v1.1.2
         with:
           path: ~/tempfile
-          key: ${{ runner.os }}-tempfile-${{ hashFiles('**/tempfile') }}
+          key: ${{ runner.os }}-tempfile-${{ hashFiles('~/tempfile/**') }}
           restore-keys: |
             ${{ runner.os }}-tempfile-
     
@@ -37,7 +37,7 @@ jobs:
         uses: actions/cache@v1.1.2
         with:
           path: ~/tempfile
-          key: ${{ runner.os }}-tempfile-${{ hashFiles('**/tempfile') }}
+          key: ${{ runner.os }}-tempfile-${{ hashFiles('~/tempfile/**') }}
           restore-keys: |
             ${{ runner.os }}-tempfile-
 
