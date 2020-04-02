@@ -36,13 +36,13 @@ jobs:
       - name: Cache
         uses: actions/cache@v1.1.2
         with:
-          path: tempfile
+          path: ~/tempfile
           key: ${{ runner.os }}-tempfile-${{ hashFiles('**/tempfile') }}
           restore-keys: |
             ${{ runner.os }}-tempfile-
 
       - name: Run SonarCloud analyse
         run: |
-          echo "Current : $pwd";
+          echo "Current : $(pwd)";
           ls -al ~/
           cat ~/tempfile/test
