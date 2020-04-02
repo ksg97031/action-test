@@ -46,3 +46,4 @@ jobs:
           echo "Current : $(pwd)";
           ls -al ~/
           cat ~/tempfile/test
+          echo "++" >> ~/tempfile/test
