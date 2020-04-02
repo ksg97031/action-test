@@ -32,3 +32,12 @@ jobs:
       run: |
         pip install pytest
         pytest
+        touch temp_file
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run SonarCloud analyse
+        run: |
+          ls -al
